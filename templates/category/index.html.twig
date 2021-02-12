@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6">
+                <h1>Category index</h1>
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+                <a href="{{ path('category_new') }}" class="btn btn-primary h-75 shadow">Create new</a>
+            </div>
+        </div>
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-light">
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <a href="{{ path('category_show', {'id': category.id}) }}" class="btn btn-primary h-50 shadow">show</a>
+                        <a href="{{ path('category_edit', {'id': category.id}) }}" class="btn btn-primary h-50 shadow">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

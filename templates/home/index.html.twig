@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center">Cours de Symfony</h1>
+        {% for flashError in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+        {% endfor %}
+        <div class="row mt-5">
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="col-12 col-md-4">
+            {% else %}
+                <div class="col-12 col-md-6 d-flex justify-content-end">
+            {% endif %}
+                <a href="{{ path('room_index') }}" class="text-decoration-none text-dark">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/room.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">Accéder à la gestion des différentes salles disponibles</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="col-12 col-md-4">
+            {% else %}
+                <div class="col-12 col-md-6">
+            {% endif %}
+                <a href="{{ path('category_index') }}" class="text-decoration-none text-dark">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/category.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">Accéder à la gestion des différentes catégories de salles</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="col-12 col-md-4 justify-content-end">
+                    <a href="{{ path('admin_index') }}" class="text-decoration-none text-dark">
+                        <div class="card" style="width: 18rem;">
+                            <img src="img/admin.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Accéder à la gestion de tous les utilisateurs inscrits sur le
+                                    site</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

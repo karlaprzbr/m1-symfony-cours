@@ -1,19 +1,70 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+<!doctype html>
+<html lang="fr" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+</head>
+<body class="d-flex flex-column h-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ path('home') }}">MASTER Cours Symfony</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            {% if is_granted('ROLE_USER') %}
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('room_index') }}">Salles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('category_index') }}">Types de salle</a>
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_index') }}">Administration</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                        </li>
+    {#                    <li class="nav-item dropdown">#}
+    {#                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
+    {#                            Dropdown#}
+    {#                        </a>#}
+    {#                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+    {#                            <li><a class="dropdown-item" href="#">Action</a></li>#}
+    {#                            <li><a class="dropdown-item" href="#">Another action</a></li>#}
+    {#                            <li><hr class="dropdown-divider"></li>#}
+    {#                            <li><a class="dropdown-item" href="#">Something else here</a></li>#}
+    {#                        </ul>#}
+    {#                    </li>#}
+    {#                    <li class="nav-item">#}
+    {#                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>#}
+    {#                    </li>#}
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-secondary" type="submit">Search</button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </nav>
+    <main class="flex-shrink-0" style="top: 200px !important;">
+    {% block body %}{% endblock %}
+    </main>
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container">
+            <p class="text-center text-white text-muted">© 2021 Karla Pérez</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
 </html>

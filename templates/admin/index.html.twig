@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6">
+                <h1>User index</h1>
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+                <a href="{{ path('user_new') }}" class="btn btn-success h-75 shadow">Create new</a>
+            </div>
+        </div>
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>IsVerified</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-light">
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+                    <td>
+                        <a href="{{ path('user_show', {'id': user.id}) }}" class="btn btn-primary h-50 shadow">show</a>
+                        <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-primary h-50 shadow">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="12">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
