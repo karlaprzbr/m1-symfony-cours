@@ -9,6 +9,7 @@
             <div class="alert alert-danger" role="alert">{{ flashError }}</div>
         {% endfor %}
         <div class="row mt-5">
+        <a href="{{ path('export') }}" class="btn btn-success shadow">Exporter la base de données</a>
             {% if is_granted('ROLE_ADMIN') %}
                 <div class="col-12 col-md-4">
             {% else %}
