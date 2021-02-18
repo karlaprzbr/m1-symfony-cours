@@ -9,17 +9,17 @@
                 <h1>Room index</h1>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <a href="{{ path('room_new') }}" class="btn btn-success shadow h-75">Create new</a>
+                <a href="{{ path('room_new') }}" class="btn btn-success shadow h-75">Réserver une autre salle</a>
             </div>
         </div>
         <table class="table">
             <thead class="table-dark">
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Capacity</th>
-                    <th>actions</th>
-                </tr>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Capacity</th>
+                <th>actions</th>
+            </tr>
             </thead>
             <tbody class="table-light">
             {% for room in rooms %}
@@ -28,12 +28,7 @@
                     <td>{{ room.name }}</td>
                     <td>{{ room.capacity }}</td>
                     <td>
-                        {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('room_show', {'id': room.id}) }}" class="btn btn-primary shadow">show</a>
-                        <a href="{{ path('room_edit', {'id': room.id}) }}" class="btn btn-primary shadow">edit</a>
-                        {% else %}
-                        {{ include('room/_book_form.html.twig') }}
-                        {% endif %}
+                        {{ include('room/_unbook_form.html.twig') }}
                     </td>
                 </tr>
             {% else %}

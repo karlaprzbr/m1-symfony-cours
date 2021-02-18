@@ -22,6 +22,7 @@ class RoomType extends AbstractType
                 'choice_label'=>'name',
                 'multiple'=>false
             ])
+            ->add('city')
         ;
     }
 

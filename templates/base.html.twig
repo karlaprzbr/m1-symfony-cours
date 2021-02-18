@@ -10,13 +10,14 @@
 <body class="d-flex flex-column h-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="{{ path('home') }}">MASTER Cours Symfony</a>
+            <a class="navbar-brand text-bold" href="{{ path('home') }}">{{ 'réservation'|upper }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             {% if is_granted('ROLE_USER') %}
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Accueil</a>
                         </li>
@@ -26,11 +27,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('category_index') }}">Types de salle</a>
                         </li>
-                        {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('admin_index') }}">Administration</a>
                         </li>
                         {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('room_index') }}">Réserver une salle</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('room_booked') }}">Salles réservées</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
                         </li>
@@ -49,10 +55,6 @@
     {#                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>#}
     {#                    </li>#}
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-secondary" type="submit">Search</button>
-                    </form>
                 </div>
             {% endif %}
         </div>

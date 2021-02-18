@@ -33,6 +33,22 @@ class Room
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $city;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default":"0"})
+     */
+    private $isBooked = false;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $creationUser;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +86,42 @@ class Room
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getIsBooked(): ?bool
+    {
+        return $this->isBooked;
+    }
+
+    public function setIsBooked(bool $isBooked): self
+    {
+        $this->isBooked = $isBooked;
+
+        return $this;
+    }
+
+    public function getCreationUser(): ?User
+    {
+        return $this->creationUser;
+    }
+
+    public function setCreationUser(?User $creationUser): self
+    {
+        $this->creationUser = $creationUser;
 
         return $this;
     }

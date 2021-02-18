@@ -4,42 +4,34 @@
 
 {% block body %}
     <div class="container mt-5">
-        <h1 class="text-center">Cours de Symfony</h1>
+        <h1 class="text-center">Gestion des réservations</h1>
         {% for flashError in app.flashes('verify_email_error') %}
             <div class="alert alert-danger" role="alert">{{ flashError }}</div>
         {% endfor %}
         <div class="row mt-5">
-        <a href="{{ path('export') }}" class="btn btn-success shadow">Exporter la base de données</a>
+{#        <a href="{{ path('export') }}" class="btn btn-success shadow">Exporter la base de données</a>#}
             {% if is_granted('ROLE_ADMIN') %}
                 <div class="col-12 col-md-4">
-            {% else %}
-                <div class="col-12 col-md-6 d-flex justify-content-end">
-            {% endif %}
-                <a href="{{ path('room_index') }}" class="text-decoration-none text-dark">
-                    <div class="card" style="width: 18rem;">
-                        <img src="img/room.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Accéder à la gestion des différentes salles disponibles</p>
+                    <a href="{{ path('room_index') }}" class="text-decoration-none text-dark">
+                        <div class="card" style="width: 18rem;">
+                            <img src="img/room.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Accéder à la gestion des différentes salles disponibles</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            {% if is_granted('ROLE_ADMIN') %}
-                <div class="col-12 col-md-4">
-            {% else %}
-                <div class="col-12 col-md-6">
-            {% endif %}
-                <a href="{{ path('category_index') }}" class="text-decoration-none text-dark">
-                    <div class="card" style="width: 18rem;">
-                        <img src="img/category.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Accéder à la gestion des différentes catégories de salles</p>
+                    </a>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-center">
+                    <a href="{{ path('category_index') }}" class="text-decoration-none text-dark">
+                        <div class="card" style="width: 18rem;">
+                            <img src="img/category.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">Accéder à la gestion des différentes catégories de salles</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            {% if is_granted('ROLE_ADMIN') %}
-                <div class="col-12 col-md-4 justify-content-end">
+                    </a>
+                </div>
+                <div class="col-12 col-md-4 d-flex justify-content-end">
                     <a href="{{ path('admin_index') }}" class="text-decoration-none text-dark">
                         <div class="card" style="width: 18rem;">
                             <img src="img/admin.jpg" class="card-img-top" alt="...">
@@ -50,6 +42,33 @@
                         </div>
                     </a>
                 </div>
+            {% else %}
+                <div class="col-12 col-md-3"></div>
+                <div class="col-12 col-md-3">
+                    <a href="{{ path('room_index') }}" class="text-decoration-none text-dark">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-header">
+                                <h5 class="card-title">Réserver</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Réservation d'une des salles disponibles.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-3 d-flex justify-content-end">
+                    <a href="{{ path('admin_index') }}" class="text-decoration-none text-dark">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-header">
+                                <h5 class="card-title">Réservations en cours</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Accéder à la gestion des salles réservées.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-3"></div>
             {% endif %}
         </div>
     </div>

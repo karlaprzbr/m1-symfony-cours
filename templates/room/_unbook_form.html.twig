@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('room_unbook', {'id': room.id}) }}" onsubmit="return confirm('Are you sure you want to unbook this room ?');">
+    <input type="hidden" name="_method" value="UNBOOK">
+    <input type="hidden" name="_token" value="{{ csrf_token('unbook' ~ room.id) }}">
+    <button class="btn btn-primary h-75 shadow">Annuler la réservation</button>
+</form>
